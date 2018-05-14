@@ -121,3 +121,18 @@ max_split, max_gain = max_split_gain(X, Y)
 print("%.2f" % info(Y))
 print("%.2f" % condition_info(X, Y, 18))
 print("%d" % max_split, "%.2f" % max_gain)
+
+from sklearn.tree import DecisionTreeClassifier
+
+X2 = np.array([[ele] for ele in X])
+
+clf = DecisionTreeClassifier(criterion="entropy", max_depth=1)
+# criterion: “entropy” for the information gain.
+# max_depth: The maximum depth of the tree. If None, then nodes are expanded
+# until all leaves are pure or until all leaves contain less than
+# min_samples_split samples
+# http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier.fit
+
+clf.fit(X2, Y)
+categories = clf.predict([[16], [17], [18], [19]])
+print(categories)

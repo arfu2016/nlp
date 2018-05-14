@@ -113,3 +113,20 @@ max_split, max_gain = max_split_gain(X, Y)
 print("%.2f" % info(Y))
 print("%.2f" % condition_info(X, Y, 89))
 print("%d" % max_split, "%.2f" % max_gain)
+
+from sklearn.tree import DecisionTreeRegressor
+
+X2 = np.array([[ele] for ele in X])
+
+clf = DecisionTreeRegressor(criterion="mse", max_depth=1)
+#  “mse” for the mean squared error, which is equal to variance reduction as
+# feature selection criterion and minimizes the L2 loss using the mean of
+# each terminal node
+# variance reduction is equivalent to standard deviation reduction
+# 对于x轴是一维的连续值，max_depth的增加可以在X轴上增加更多的分割点
+# http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html#sklearn.tree.DecisionTreeRegressor
+# http://scikit-learn.org/stable/auto_examples/tree/plot_tree_regression.html
+
+clf.fit(X2, Y)
+values = clf.predict([[87], [88], [89], [90]])
+print(values)
