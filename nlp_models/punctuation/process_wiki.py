@@ -1,7 +1,5 @@
 """
-中文维基百科数据的下载地址是：
-https://dumps.wikimedia.org/zhwiki/latest/zhwiki-latest-pages-articles.xml.bz2
-可以用gensim的WikiCorpus类来导入
+In WikiCorpus class, punctuation is removed from sentences
 """
 
 # Author: Pan Yang (panyangnlp@gmail.com)
