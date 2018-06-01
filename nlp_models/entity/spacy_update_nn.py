@@ -4,6 +4,7 @@
 @Author    : Deco [deco@cubee.com]
 @Created   : 5/30/18 10:32 AM
 @Desc      : 
+https://spacy.io/usage/spacy-101#lightning-tour-training
 """
 import spacy
 import random
