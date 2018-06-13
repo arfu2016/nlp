@@ -4,6 +4,9 @@
 @Author    : Deco [deco@cubee.com]
 @Created   : 5/9/18 3:25 PM
 @Desc      : Show secondary domains of a website
+http://www.bioon.com/robots.txt
+https://www.dongqiudi.com/robots.txt
+https://soccer.hupu.com/robots.txt
 """
 import jieba
 import newspaper
