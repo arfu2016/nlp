@@ -1,0 +1,1 @@
+* * * * * /home/deco/miniconda2/envs/py3/bin/python3 /home/deco/projects/cupro/CubeGirl/SourceCode/server/redis_to_mysql.py > /dev/pts/2 2>&1
