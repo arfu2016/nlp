@@ -30,6 +30,37 @@ class SentenceTarget:
 
         self.logger.addHandler(console_handler)
 
+def set_logger():
+
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+    formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.INFO)
+    console_handler.setFormatter(formatter)
+
+    logger.addHandler(console_handler)
+	return logger
+
+def set_logger():
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+    formatter = logging.Formatter(
+        '%(asctime)s %(name)-15s %(lineno)d %(levelname)-6s %('
+        'processName)-15s %(message)s')
+
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.INFO)
+    console_handler.setFormatter(formatter)
+
+    logger.addHandler(console_handler)
+    return logger
+
+
+logger_temp = set_logger()
+
 
 def set_logger():
     # for logging
