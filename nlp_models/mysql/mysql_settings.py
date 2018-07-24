@@ -4,17 +4,7 @@
 @Author    : Deco [deco@cubee.com]
 @Created   : 5/14/18 1:42 PM
 @Desc      :
-mysql_db_robot:
-host: "120.55.102.1"
-user: "u_all"
-passwd: "hbhb0617"
-port: 7788
-db: "db_robot"
-db_name: "db_robot"
-db_name_news: "db_robot"
-db_name_regex: "db_robot"
-db_name_question_log: "db_robot"
-db_name_match: "db_robot"
+
 """
 import logging
 import os
