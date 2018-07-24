@@ -23,9 +23,9 @@ import pprint
 import pickle
 from .mysql_connect import Mysql
 
-robot_user_interact_log = {"host": "120.55.102.1", "port": 7788,
-                           "user": "u_all", "passwd": "hbhb0617",
-                           "db": "db_robot"
+robot_user_interact_log = {"host": "", "port": ,
+                           "user": "", "passwd": "",
+                           "db": ""
                            }
 
 

@@ -70,3 +70,10 @@ def set_logger():
     program = os.path.basename(sys.argv[0])
     logger = logging.getLogger(program)
     return logger
+
+
+import logging.config
+
+logging.config.dictConfig(settings.LOGGING)
+
+
