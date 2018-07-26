@@ -76,4 +76,6 @@ import logging.config
 
 logging.config.dictConfig(settings.LOGGING)
 
+logger.exception(msg="gsm_id='%s', and e=%s" % (str(gsm_id), str(e)))
+
 
