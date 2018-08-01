@@ -26,3 +26,23 @@ if __name__ == '__main__':
         print('eval of a:', eval(a))
     except Exception as e:
         print('exception for a:', e)
+
+a_string = 'bar'
+print(str(a_string))
+print(repr(a_string))
+print(json.dumps(a_string))
+print(pickle.dumps(a_string))
+print(a_string.encode('utf-8'))
+
+print(a_string)
+print(eval(repr(a_string)))
+print(json.loads(json.dumps(a_string)))
+print(pickle.loads(pickle.dumps(a_string)))
+print(a_string.encode('utf-8').decode('utf-8'))
+
+print(isinstance(str(a_string), str))
+print(isinstance(repr(a_string), str))
+print(isinstance(json.dumps(a_string), str))
+print(isinstance(pickle.dumps(a_string), bytes))
+print(isinstance(a_string.encode('utf-8'), bytes))
+
