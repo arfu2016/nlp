@@ -1,0 +1,4 @@
+Timsort: a hybrid stable sorting algorithm, derived from merge sort and insertion sort
+
+The sorting algorithm used in sorted and list.sort is Timsort, and adaptive algorithm that switches from insertion sort to merge sort strategies, depending on how ordered the data is. This is efficient because real-world data tends to have runs of sorted items.
+
