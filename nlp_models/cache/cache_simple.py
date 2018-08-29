@@ -4,6 +4,13 @@
 @Author    : Deco [deco@cubee.com]
 @Created   : 6/20/18 5:48 PM
 @Desc      : 
+Besides making silly recursive algorithms viable, lru_cache really shines in applications that need to fetch information from the Web.
+
+functools.lru_cache(maxsize=128, typed=False)
+
+For optimal performance, maxsize should be a power of 2
+The typed argument, if set to True , stores results of different argument
+types separately, i.e., distinguishing between float and integer arguments that are normally considered equal, like 1 and 1.0 . By the way, because lru_cache uses a dict to store the results, and the keys are made from the positional and keyword arguments used in the calls, all the arguments taken by the decorated function must be hashable.
 """
 import time
 import datetime

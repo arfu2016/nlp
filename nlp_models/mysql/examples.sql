@@ -40,3 +40,9 @@ select a.person_id, a.cn_name, a.date_of_birth, a.r_position_name,
          where b.shirtnumber != ""
 -- left join表示b中可以没有这个人，此时b.shirtnumber这个字段为空？
 -- where b.shirtnumber != ""表示一旦有的话，shirtnumber不能为空？
+
+
+_sql = """SELECT `subcode`, `use`, `value` FROM `robot_topic_term` WHERE `deleted_at` is NULL"""
+-- 反引号
+
+

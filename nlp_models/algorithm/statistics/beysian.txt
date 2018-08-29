@@ -1,0 +1,9 @@
+beysian formula:
+
+p(model)*p(data|model) = p(data)*p(model|data)
+
+用来评估模型
+p(model|data) = p(model)*p(data|model)/p(data)
+
+p(model)是先验概率，就是看到当前数据前我们认为模型成立的概率
+
