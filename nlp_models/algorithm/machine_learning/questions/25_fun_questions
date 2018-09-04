@@ -1,0 +1,110 @@
+1. I built a linear regression model showing 95% confidence interval. Does it mean that there is a 95% chance that my model coefficients are the true estimate of the function I am trying to approximate? (Hint: It actually means 95% of the time…)
+
+系数的95%置信区间(m加减s）表明真实值有95%的可能性落在这个区间内，但这并不意味着，点估计m有95%的可能性是正确的。
+
+系数的估计（被认为是一个随机变量）的分布一般认为是正态分布，两边各拿出2.5%的面积，中间就是95%的置信区间。
+
+2. What is a similarity between Hadoop file system and k-nearest neighbor algorithm? (Hint: ‘lazy’)
+
+Hadoop不懂，只知道用了map、reduce技术，knn倒是了解，找离要分类的点最近的几个点来看
+
+3. Which structure is more powerful in terms of expressiveness (i.e. it can represent a given Boolean function, accurately) — a single-layer perceptron or a 2-layer decision tree? (Hint: XOR)
+
+a single-layer perceptron means logistic regression?
+
+神经网络是可以拟合各种电路门的，具体可见coursera的machine learning课程或者udacity的deep learning课程
+
+应该是a single-layer perceptron能力更强些
+
+4. And, which one is more powerful — a 2 layer decision tree or a 2-layer neural network without any activation function? (Hint: non-linearity?)
+
+2 layer decision tree能力更强，可以表征非线性函数，a 2-layer neural network without any activation function由于没有激活函数，只能表征线性函数
+
+5. Can a neural network be used as a tool for dimensionality reduction? Explain how.
+
+神经网络里有一种叫auto encoder的东西就是做这个的，也可以做数据压缩、图像压缩，详见udacity的deep learning课程，简单讲，原来的维度可以作为输入的维度，希望得到的较小的维度可以作为输出的维度，就这样实现了降维。
+
+6. Everybody maligns and belittles the intercept term in a linear regression model. Tell me one of its utilities. (Hint: noise/garbage collector)
+
+截距就是当前给出的变量和线性模型所不能解释的部分，也就是noise collector
+
+7. LASSO regularization reduces coefficients to exact zero. Ridge regression reduces them to very small but non-zero value. Can you explain the difference intuitively from the plots of two simple function|x| and x²? (Hint: Those sharp corners in the |x| plot)
+
+LASSO 是l1 regularization, Ridge是l2 regularization. x^2在0的地方是可导函数，而|x|在0的地方连续但不可导。这就造成了这种结果：LASSO regularization reduces coefficients to exact zero. Ridge regression reduces them to very small but non-zero value.
+
+8. Let’s say that you don’t know anything about the distribution from which a data set (continuous valued numbers) came and you are forbidden to assume that it is Normal Gaussian. Show by simplest possible arguments that no matter what the true distribution is, you can guarantee that ~89% of the data will lie within +/- 3 standard deviations away from the mean (Hint: Markov’s Ph.D. adviser)
+
+CHEBYSHEV’S THEOREM
+
+As evidenced by Russian mathematician Pafnuty Chebyshev (1821-1894), irrespective of shape, the boundaries on the proportion of the data will lie a specified number of standard deviations from the mean.  A few
+examples are as follows:
+
+At least 75% of
+ the data is within 2 standard deviations of the mean.
+At least 89% of
+ the data is within 3 standard deviations of the mean.
+At least 95% of
+ the data is within 4 1/2 standard deviations of the mean.
+Chebyshev’s
+ rule holds for both populations and samples and can be mathematically
+ summarized as follows:
+
+Percentage of Values Surrounding the Mean = 1 - (1/k^2)
+
+For data that is
+ bell-shaped and symmetrical (Normal):
+
+Approximately
+ 68% of the data is within +/- 1 standard deviations of the mean.
+Approximately
+ 95% of the data is within +/- 2 standard deviations of the mean.
+More than 99% of
+ the data is within +/- 3 standard deviations of the mean.
+Studying the "Normal" or "Gaussian" probability distribution will help to demonstrate this concept in far greater detail and accuracy.
+
+9. Majority of machine learning algorithms involve some kind of matrix manipulation like multiplication or inversion. Give a simple mathematical argument why a mini-batch version of such ML algorithm might be computationally more efficient than a training with full data set. (Hint: Time complexity of matrix multiplication…)
+
+矩阵乘法的naive algorithm的时间复杂度是O(n^3), 假设是n*n与n*n矩阵的相乘.
+
+for i=1 to n
+   for j=1 to n    
+     c[i][j]=0
+     for k=1 to n
+         c[i][j] = c[i][j]+a[i][k]*b[k][j]
+
+There do exist algorithms that reduce this somewhat, but you're not likely to find an O(n^2) implementation. 
+
+因为时间复杂度如此之大，n的大小就很关键，所以，mini-batch training is more efficient than full-batch training.
+
+10. Don’t you think that a time series is a really simple linear regression problem with only one response variable and a single predictor — time? What’s the problem with a linear regression fit (not necessarily with a single linear term but even with polynomial degree terms) approach in case of a time series data? (Hint: Past is an indicator of future…)
+
+对于时序数据，未来不仅取决于过去的一个时间点的数据，而是和一连串时间有关，并且是有先后顺序的一连串数据。如果未来只取决与一个时间点，一元线性回归可能是有效的，如果未来取决于多个时间点但不讲究先后顺序，每个时间点可以作为一个独立变量，多元线性回归可以尝试，但对于有先后顺序的时间序列，最好还是用cnn或者rnn，可以捕捉这种次序。
+
+11. Show by simple mathematical argument that finding the optimal decision trees for a classification problem among all the possible tree structures, can be an exponentially hard problem.(Hint: How many trees are there in the jungle anyway?)
+
+回归树和决策树不仅能是二叉树，也能是多叉树。对于用于分类的决策树，不妨认为就是二叉树（最简单的情况），如果深度为n的话，就有2^n种不同的树，所以，深度越大，计算越慢，exponentially hard。
+
+12. Both decision trees and deep neural networks are non-linear classifier i.e. they separates the space by complicated decision boundary. Why, then, it is so much easier for us to intuitively follow a decision tree model vs. a deep neural network?
+
+决策树使用的函数比较简单，是机制直观的分割函数，比较容易理解，而神经网络使用的是线性函数加激活函数，没有对应的明确的机制，所以很难理解。
+
+13. Back-propagation is the workhorse of deep learning. Name a few possible alternative techniques to train a neural network without using back-propagation. (Hint: Random search…)
+
+Back-propagation求的是loss function对各个系数的偏导，从对网络结构从后向前算出来的。然后由此用gradient descent来更新系数，也就是说，系数如何变是有方向、有规划的。当然，系数如何变也可以随机选择，只要得到的loss function比之前小就行，只是，这种方法的效率要比Back-propagation差。
+
+14. Let’s say you have two problems — a linear regression and a logistic regression (classification). Which one of them is more likely to be benefited from a newly discovered super-fast large matrix multiplication algorithm? Why? (Hint: Which one is more likely to use a matrix manipulation?)
+
+logistic regression，因为用的矩阵操作要更多，线性回归只涉及ax+b（多个样本的话就是矩阵操作了），而logistic regression除了ax+b，还涉及到1/(1+e^-z)。（矩阵中的每个元素都要做这种操作）
+
+15. What is the impact of correlation among predictors on principal component analysis? How can you tackle it?
+
+如果不同的predictors存在correlation，pca首先做的就是求协方差矩阵，有协方差就表明有相关，通过对这个矩阵求特征向量和特征值，就构建了线性无关的新的向量来作为predictor，把原来的向量x与特征向量相乘，就变换到了新的坐标系中。pca是用来降维的，所以也不是选全部的特征向量，而是特征值最大的k个特征向量，最终就能变换到一个n维空间中。
+
+
+
+
+
+
+
+
+
