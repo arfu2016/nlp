@@ -100,11 +100,48 @@ logistic regression，因为用的矩阵操作要更多，线性回归只涉及a
 
 如果不同的predictors存在correlation，pca首先做的就是求协方差矩阵，有协方差就表明有相关，通过对这个矩阵求特征向量和特征值，就构建了线性无关的新的向量来作为predictor，把原来的向量x与特征向量相乘，就变换到了新的坐标系中。pca是用来降维的，所以也不是选全部的特征向量，而是特征值最大的k个特征向量，最终就能变换到一个n维空间中。
 
+16. You are asked to build a classification model about meteorites impact with Earth (important project for human civilization). After preliminary analysis, you get 99% accuracy. Should you be happy? Why not? What can you do about it? (Hint: Rare event…)
 
+就像影响股市价格的黑天鹅事件一样，小概率事件也是可能发生的，但是从模型上确实很难捕捉到，比如大的地震灾害
 
+17. Is it possible capture the correlation between continuous and categorical variable? If yes, how?
 
+If the response variable is continuous, categorical variable can be encoded as dummy variable, and we can use linear regression to capture the correlation.
 
+Another way, we use the categorical variable as the response variable, then we can use logistic regresson or softmax regression to capture the correlation.
 
+18. If you are working with gene expression data, there are often millions of predictor variables and only hundreds of sample. Give simple mathematical argument why ordinary-least-square is not a good choice for such situation if you to build a regression model. (Hint: Some matrix algebra…)
 
+方程组中未知数的数目远大于方程的数目，会导致产生很多的解，约束条件不够，很难确定哪个解是正确的。
+
+19. Explain why k-fold cross-validation does not work well with time-series model. What can you do about it? (Hint: Immediate past is a close indicator of future…)
+
+在把训练集和测试集分开的时候，由于紧邻着的过去和未来相关性比较强，如果分别分在训练集和测试集，训练集和测试集就有关联，测试集就失去了测试的意义。解决的办法是，训练集取一段时间，测试集选离训练集时间较远的一段时间。
+
+20. Simple random sampling of training data set into training and validation set works well for the regression problem. But what can go wrong with this approach for a classification problem? What can be done about it? (Hint: Are all classes prevalent to the same degree?)
+
+不同的类别数目不同，抽样的时候，很难保证测试集和训练集中各个类的比例是一样的，或者说，训练集中训练出的模型不一定适用于整体以及测试集。解决的办法是，一个类一个类的来做train-validation split
+
+21. Which is more important to you – model accuracy, or model performance?
+
+都重要，目前来看，首先是model accuracy，model performance可以通过gpu以及cpu集群来想办法
+
+22. If you could take advantage of multiple CPU cores, would you prefer a boosted-tree algorithm over a random forest? Why? (Hint: if you have 10 hands to do a task, you take advantage of it
+
+boosted-tree和random forest都是基于decision tree的算法，decision tree是了解的，另外两种不太了解，如果有多核cpu的话，就看那种算法更适合并行计算。
+
+23. Imagine your data set is known to be linearly separable and you have to guarantee the convergence and maximum number of iterations/steps of your algorithm (due to computational resource reason). Would you choose gradient descent in this case? What can you choose? (Hint: Which simple algorithm provides guarantee of finding solution?)
+
+如果限定maximum number of iterations，计算资源有限的话，就不要用gradient descent了，对于线性问题，比如least square的loss function, 可以直接求导，然后求解方程组得到分类模型的参数值。
+
+24. Let’s say you have a extremely small memory/storage. What kind of algorithm would you prefer — logistic regression or k-nearest neighbor? Why? (Hint: Space complexity)
+
+看算法的空间复杂度，随着样本数的增长，数据之外的空间，logistic regression所需要的空间是不变的，只和模型的参数个数有关，而k-nearest neighbor所需的空间是随着样本数的增多而增多的，因为样本越多，需要算的距离就越多，接近线性增长。所以，内存小的话，更喜欢logistic regression。本质上讲，是因为logistic regression是parametric method，模型的参数是固定的，与数据无关的， k-nearest neighbor是nonparametric method，模型参数的数目适合数据的多少有关的。
+
+25. To build a machine learning model initially you had 100 data points and 5 features. To reduce bias, you doubled the features to include 5 more variables and collected 100 more data points. Explain if this is a right approach? (Hint: There is a curse on machine learning. Have you heard about it?)
+
+The curse of dimensionality refers to various phenomena that arise when analyzing and organizing data in high-dimensional spaces (often with hundreds or thousands of dimensions) that do not occur in low-dimensional settings such as the three-dimensional physical space of everyday experience. 
+
+当维度增加之后，数据处理起来会有各种各样的问题，最明显的一个，数据点要增加很多才能得到预期的效果，也就是说，高维模型对数据量的需求极大。
 
 
